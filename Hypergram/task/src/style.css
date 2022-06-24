@@ -32,6 +32,12 @@ body {
     display: none;
 }
 
+#file-input-label{
+    margin: 5vmin;
+    background: #666666;
+    padding: 1vmin 8vmin;
+}
+
 #editor-panel button, input {
     min-width: 30vmin;
     max-width: 30vmin;

@@ -11,13 +11,16 @@
         <canvas id="img-canvas"></canvas>
     </section>
     <aside id="editor-panel">
-        <input id="file-input" type="file">
-        <button id="upload-button">UPLOAD FILE</button>
+        <label for="file-input" id="file-input-label">
+            Select Image
+            <input id="file-input" type="file">
+        </label>
         <label for="brightness">Brightness</label><input id="brightness" type="range">
         <label for="contrast">Contrast</label><input id="contrast" type="range">
         <label for="transparent">Transparency</label><input id="transparent" type="range">
-        <button id="save-button">SAVE IMAGE</button>
+        <button id="save-button">Save Image</button>
     </aside>
 </div>
+<script src="script.js"></script>
 </body>
 </html>
