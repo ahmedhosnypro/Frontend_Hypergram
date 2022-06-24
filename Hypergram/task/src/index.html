@@ -7,13 +7,13 @@
 </head>
 <body>
 <div id="main">
-    <section id="img-container">
-        <canvas id="img-canvas"></canvas>
-    </section>
+    <div id="img-container">
+        <canvas id="canvas"></canvas>
+    </div>
     <aside id="editor-panel">
         <label for="file-input" id="file-input-label">
             Select Image
-            <input id="file-input" type="file">
+            <input type="file" id="file-input" accept = "image/*">
         </label>
         <label for="brightness">Brightness</label><input id="brightness" type="range">
         <label for="contrast">Contrast</label><input id="contrast" type="range">

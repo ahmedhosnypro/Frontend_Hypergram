@@ -9,10 +9,17 @@ body {
 }
 
 #img-container {
-    background: white;
     min-width: 71vmax;
     min-height: 100%;
     margin: 1vmin;
+    padding: 1vmin;
+    justify-content: center;
+    align-items: center;
+}
+
+#canvas{
+    justify-content: center;
+    align-items: center;
 }
 
 #editor-panel {
