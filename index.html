@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hypergram</title>
+    <link href="Hypergram/task/src/style.css" rel="stylesheet">
+</head>
+<body>
+<div id="main">
+    <div id="img-container">
+        <canvas id="canvas"></canvas>
+    </div>
+    <aside id="editor-panel">
+        <label for="file-input" id="file-input-label">
+            Select Image
+            <input type="file" id="file-input" accept = "image/*">
+        </label>
+        <label for="brightness" >Brightness</label><input id="brightness" type="range" min="-255" max="255" step="1">
+        <label for="contrast">Contrast</label><input id="contrast" type="range" min="-128" max="128" step="1">
+        <label for="transparent">Transparency</label><input id="transparent" type="range" min="0" max="1" value="1" step="0.1">
+        <button id="save-button">Save Image</button>
+    </aside>
+</div>
+<script src="Hypergram/task/src/script.js"></script>
+</body>
+</html>
