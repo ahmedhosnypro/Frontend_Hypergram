@@ -1,18 +1,20 @@
-const puppeteer = require('puppeteer');
 const pixels = require('image-pixels')
 const path = require('path');
+const rimraf = require('rimraf');
+const fs = require("fs");
 
 const {StageTest, correct, wrong} = require('hs-test-web');
-
 const sleep = (ms) => new Promise(res => setTimeout(res, ms));
 
-const pagePath = 'file://' + path.resolve(__dirname, '../src/index.html');
+const workingDir = path.resolve(__dirname, '../src');
+const pagePath = 'file://' + path.resolve(__dirname, workingDir + '/index.html');
 const imageFolderPath = path.resolve(__dirname, '../test/images/');
 const initImage = imageFolderPath + '/testImage.png'
 const brightnessTestImage = imageFolderPath + '/testBrightness.png'
 const contrastTestImage = imageFolderPath + '/testContrast.png'
 const transparentTestImage = imageFolderPath + '/testTransparent.png'
 const multipleFilterTestImage = imageFolderPath + '/testMultipleFilters.png'
+const downloadedFilePath = workingDir + `${path.sep}downloads${path.sep}result.png`;
 
 function comparePixels(userPixels, correctPixels, errorMessage) {
     if (correctPixels.length !== Object.keys(userPixels).length) {
@@ -26,12 +28,15 @@ function comparePixels(userPixels, correctPixels, errorMessage) {
     }
 }
 
-
 class HypergramTest extends StageTest {
 
     page = this.getPage(pagePath)
 
     tests = [
+        this.node.execute(() => {
+            rimraf.sync(workingDir + '/downloads');
+            return correct()
+        }),
         this.page.execute(() => {
             const canvas = document.getElementsByTagName("canvas");
             if (canvas.length !== 1) {
@@ -264,6 +269,38 @@ class HypergramTest extends StageTest {
                 return compareResult
             }
 
+            return correct()
+        }),
+        this.node.execute(async () => {
+
+            await this.page.pageInstance._client.send('Page.setDownloadBehavior', {
+                behavior: 'allow',
+                downloadPath: workingDir + path.sep + "downloads"
+            });
+
+            const saveButton = await this.page.findBySelector("button#save-button")
+            if (saveButton === null) {
+                return wrong("Can't find a button with #save-button id!")
+            }
+            await saveButton.click()
+
+            await sleep(1000)
+
+            if (!fs.existsSync(downloadedFilePath)) {
+                return wrong("Looks like you didn't download a PNG file named 'testMultipleFilters.png', " +
+                    "after clicking on 'Save Image' button")
+            }
+
+            const downloadedPixels = await pixels(downloadedFilePath)
+            const correctPixels = await pixels(multipleFilterTestImage)
+
+            const compareResult = comparePixels(downloadedPixels.data, correctPixels.data,
+                "After downloading an image from the page it has wrong pixel values!");
+            if (compareResult) {
+                return compareResult
+            }
+
+            rimraf.sync(workingDir + '/downloads');
             return correct()
         })
     ]
