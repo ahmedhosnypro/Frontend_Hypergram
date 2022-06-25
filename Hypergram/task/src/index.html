@@ -15,9 +15,9 @@
             Select Image
             <input type="file" id="file-input" accept = "image/*">
         </label>
-        <label for="brightness">Brightness</label><input id="brightness" type="range">
-        <label for="contrast">Contrast</label><input id="contrast" type="range">
-        <label for="transparent">Transparency</label><input id="transparent" type="range">
+        <label for="brightness" >Brightness</label><input id="brightness" type="range" min="-255" max="255" step="1">
+        <label for="contrast">Contrast</label><input id="contrast" type="range" min="-128" max="128" step="1">
+        <label for="transparent">Transparency</label><input id="transparent" type="range" min="0" max="1" value="1" step="0.1">
         <button id="save-button">Save Image</button>
     </aside>
 </div>

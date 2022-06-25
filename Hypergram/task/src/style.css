@@ -11,7 +11,7 @@ body {
 #img-container {
     min-width: 71vmax;
     min-height: 100%;
-    margin: 1vmin;
+    margin: 7vmin 0 0 7vmin;
     padding: 1vmin;
     justify-content: center;
     align-items: center;
