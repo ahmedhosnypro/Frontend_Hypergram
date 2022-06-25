@@ -1,0 +1,59 @@
+body {
+    max-font-size: .5vmin;
+}
+
+#main {
+    display: flex;
+    min-height: 95vmin;
+    margin: 2vmin;
+}
+
+#img-container {
+    min-width: 71vmax;
+    min-height: 100%;
+    margin: 7vmin 0 0 7vmin;
+    padding: 1vmin;
+    justify-content: center;
+    align-items: center;
+}
+
+#canvas{
+    justify-content: center;
+    align-items: center;
+}
+
+#editor-panel {
+    background: #2a2a2a;
+    min-width: 25vmax;
+    max-width: 25vmax;
+    min-height: 100%;
+    margin: 1vmin;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#file-input {
+    display: none;
+}
+
+#file-input-label{
+    margin: 5vmin;
+    background: #666666;
+    padding: 1vmin 8vmin;
+}
+
+#editor-panel button, input {
+    min-width: 30vmin;
+    max-width: 30vmin;
+    min-height: 5vmin;
+    max-height: 5vmin;
+}
+
+#save-button, #upload-button {
+    margin: 5vmin;
+    background: #666666;
+    border: none;
+}
