@@ -5,14 +5,9 @@ const contrastSlider = document.getElementById('contrast');
 const transparencySlider = document.getElementById('transparent');
 const saveImageButton = document.getElementById('save-button');
 
-let canvas = null;
-let ctx = null;
+let canvas = document.getElementById('canvas');
+let ctx = canvas.getContext('2d');
 const image = new Image()
-document.addEventListener("DOMContentLoaded", () => {
-    canvas = document.getElementById('canvas');
-    ctx = canvas.getContext('2d');
-}, false)
-
 
 fileInput.addEventListener('change',
     (event) => {
@@ -87,8 +82,6 @@ function truncate(value) {
 
 
 function downloadImage() {
-    console.log("download");
-
     const imageData = canvas.toDataURL();
     let tmpLink = document.createElement('a');
     tmpLink.download = 'result.png';
